@@ -1,0 +1,5 @@
+{
+    "scriptId":"<your project id>",
+    "rootDir": "./src",
+    "fileExtension": "ts"
+}
