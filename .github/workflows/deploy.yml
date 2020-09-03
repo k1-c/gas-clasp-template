@@ -28,24 +28,17 @@ jobs:
 
     - name: generate clasprc.json
       run: |
-        sudo sed -i -e "s/\"access_token\":\"dummy\"/\"access_token\":\"${ACCESS_TOKEN}\"/" clasprc.json
-        sudo sed -i -e "s/\"id_token\":\"dummy\"/\"id_token\":\"${ID_TOKEN}\"/" clasprc.json
-        sudo sed -i -e "s/\"clientId\":\"dummy\"/\"clientId\":\"${CLIENT_ID}\"/" clasprc.json
-        sudo sed -i -e "s/\"clientSecret\":\"dummy\"/\"clientSecret\":\"${CLIENT_SECRET}\"/" clasprc.json
-        sudo sed -i -e "s@\"refresh_token\":\"dummy\"@\"refresh_token\":\"${REFRESH_TOKEN}\"@" clasprc.json
+        sudo sed -i -e "s/\"access_token\":\"dummy\"/\"access_token\":\"${GAS_ACCESS_TOKEN}\"/" clasprc.json
+        sudo sed -i -e "s/\"id_token\":\"dummy\"/\"id_token\":\"${GAS_ID_TOKEN}\"/" clasprc.json
+        sudo sed -i -e "s/\"clientId\":\"dummy\"/\"clientId\":\"${GAS_CLIENT_ID}\"/" clasprc.json
+        sudo sed -i -e "s/\"clientSecret\":\"dummy\"/\"clientSecret\":\"${GAS_CLIENT_SECRET}\"/" clasprc.json
+        sudo sed -i -e "s@\"refresh_token\":\"dummy\"@\"refresh_token\":\"${GAS_REFRESH_TOKEN}\"@" clasprc.json
 
-    - name: generate .clasp.json
-      run: |
-        sudo sed -i -e "s/\"scriptId\":\"dummy\"/\"scriptId\":\"${SCRIPT_ID}\"/" ./src/.clasp.json
     - name: set clasprc
       run: sudo cat clasprc.json > ~/.clasprc.json
 
     - name: push
-      run: |
-        cd ./src
-        sudo clasp push --force
+      run: sudo clasp push --force
     
     - name: deploy
-      run: |
-        cd ./src
-        sudo clasp deploy
+      run: sudo clasp deploy
